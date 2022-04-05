@@ -9,8 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack(spacing: 64) {
+            
+            Button("Crashfree async open") {
+                Task {
+                    try await CrashfreeHandler().handle()
+                }
+            }
+            
+            
+            Button("Async open in Actor") {
+                Task {
+                    try await CrashingHandler().handle()
+                }
+            }
+            
+        }
     }
 }
 
